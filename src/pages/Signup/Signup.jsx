@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { error, success, warn } from '../../hooks/Alerts'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { db, auth } from '../../FireBaseConnection'
+import { doc, setDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 import './Signup.css'
 
 const Signup = () => {
+  const navigat = useNavigate()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [niver, setNiver] = useState('')
@@ -16,7 +21,7 @@ const Signup = () => {
   function capitalizeFirstName(e) {
     return e.charAt(0).toUpperCase() + e.slice(1)
   }
-  var capitalizedfirstName = capitalizeFirstName(firstName)
+  const capitalizedfirstName = capitalizeFirstName(firstName)
 
   //letra maiuscula sobrenome
   function capitalizeLastName(e) {
@@ -28,9 +33,13 @@ const Signup = () => {
     }
     return LastNameList.join(" ")
   }
-  var capitalizedLastName = capitalizeLastName(lastName)
+  const capitalizedLastName = capitalizeLastName(lastName)
 
-  const handleRegister = () => {
+  // (capitalizedfirstName) primeiro nome com letra maiuscula ja
+  // (capitalizedLastName) sobrenome com letra maiuscula ja
+
+  const handleRegister = async () => {
+
     if (firstName === '' ||
       lastName === '' ||
       niver === '' ||
@@ -40,6 +49,18 @@ const Signup = () => {
       signupPassword === '' ||
       signupPasswordConfirm === '') {
       warn("preencha todos os campos")
+      return
+    }
+
+    const currentDate = new Date();
+    const birthdateInput = new Date(niver);
+    const ageDiffMilliseconds = currentDate - birthdateInput;
+    const ageDate = new Date(ageDiffMilliseconds);
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+    //verifica idade
+    if(age<18){
+      error("idade deve ser maior de 18!")
       return
     }
 
@@ -62,14 +83,34 @@ const Signup = () => {
       error("senha deve ser iguais")
       return
     }
-    // (capitalizedfirstName) primeiro nome com letra maiuscula ja
-    // (capitalizedLastName) sobrenome com letra maiuscula ja
+    await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then((value) => {
+        const uid = value.user.uid
+        registerDB(uid)
+      })
+      .catch(() => {
+        error("Email ja existente")
+        return
+      })
+  }
 
-    console.log(capitalizedfirstName)
-    console.log(capitalizedLastName)
-
-    success("SALVO")
-
+  async function registerDB(uid) {
+    await setDoc(doc(db, "user", uid), {
+      firstName: capitalizedfirstName,
+      lastName: capitalizedLastName,
+      niver: niver,
+      pais: pais,
+      cidade: cidade,
+      signupEmail: signupEmail,
+      signupPassword: signupPassword
+    })
+      .then(() => {
+        success("cadastro realiazdo com sucesso")
+        navigat("/")
+      })
+      .catch(() => {
+        error("Não foi possivel cadastrar, tente novamente!")
+      })
   }
 
   return (
