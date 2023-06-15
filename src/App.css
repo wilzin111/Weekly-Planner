@@ -5,3 +5,7 @@
     font-family: 'Mulish', Arial, sans-serif;
     font-style: normal;
 }
+
+button{
+    cursor: pointer;
+}

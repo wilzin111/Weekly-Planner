@@ -5,7 +5,7 @@ body {
 .container {
     display: flex;
     height: 1080px;
-    background: right top url(../assets/imagen_background.png) no-repeat;
+    background: right top url(../../assets/imagen_background.png) no-repeat;
 }
 
 .text {
@@ -33,6 +33,7 @@ body {
 .container_login {
     display: flex;
     flex-direction: column;
+    margin-top: 135px;
 }
 
 .container_login h1 {
@@ -51,6 +52,34 @@ body {
     border: 1px solid #FFFFFF;
     border-radius: 50px;
     padding-left: 20px;
+}
+
+.transition {
+    position: relative;
+}
+
+.input_transition {
+    outline: none;
+}
+
+.login {
+    position: absolute;
+    right: -60px;
+    top: 18px;
+    transition: right .100s ease-in;
+    cursor: text;
+    font-size: 25px;
+    padding-right: 20px;
+}
+
+.input_transition:focus {
+    border: 2px solid cyan
+}
+
+input[type='text']:focus~label,
+input[type='password']:focus~label,
+.input_transition:not(:placeholder-shown).form__input:not(:focus)~label {
+    right: 0;
 }
 
 .container_login button {
@@ -72,5 +101,5 @@ body {
     height: 66px;
     margin-top: 36px;
     margin-left: 534px;
-    background: center url(../assets/logo_compass.png) repeat no-repeat;
+    background: center url(../../assets/logo_compass.png) repeat no-repeat;
 }
