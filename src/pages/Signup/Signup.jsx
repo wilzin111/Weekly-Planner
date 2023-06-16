@@ -25,10 +25,10 @@ const Signup = () => {
 
   //letra maiuscula sobrenome
   function capitalizeLastName(e) {
-    var LastNameList = e.split(" ")
+    let LastNameList = e.split(" ")
 
-    for (var i = 0; i < LastNameList.length; i++) {
-      var currentLastName = LastNameList[i]
+    for (let i = 0; i < LastNameList.length; i++) {
+      let currentLastName = LastNameList[i]
       LastNameList[i] = currentLastName.charAt(0).toUpperCase() + currentLastName.slice(1)
     }
     return LastNameList.join(" ")
@@ -38,7 +38,7 @@ const Signup = () => {
   // (capitalizedfirstName) primeiro nome com letra maiuscula ja
   // (capitalizedLastName) sobrenome com letra maiuscula ja
 
-  const handleRegister = async () => {
+  async function handleRegister() {
 
     if (firstName === '' ||
       lastName === '' ||
@@ -59,7 +59,7 @@ const Signup = () => {
     const age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
     //verifica idade
-    if(age<18){
+    if (age < 18) {
       error("idade deve ser maior de 18!")
       return
     }
@@ -73,7 +73,6 @@ const Signup = () => {
     }
 
     const senha = /^(?=.*[\W_])(?=.*[A-Z])(?=.*\d).{6,}$/
-
     if (!senha.test(signupPassword)) {
       error("a senha deve conter pelo menos um caracter especial, uma letra maiuscula e um numero")
       return
@@ -83,33 +82,31 @@ const Signup = () => {
       error("senha deve ser iguais")
       return
     }
-    await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
-      .then((value) => {
-        const uid = value.user.uid
-        registerDB(uid)
-      })
-      .catch(() => {
-        error("Email ja existente")
-        return
-      })
-  }
 
-  async function registerDB(uid) {
-    await setDoc(doc(db, "user", uid), {
-      firstName: capitalizedfirstName,
-      lastName: capitalizedLastName,
-      niver: niver,
-      pais: pais,
-      cidade: cidade,
-      signupEmail: signupEmail,
-      signupPassword: signupPassword
-    })
-      .then(() => {
-        success("cadastro realiazdo com sucesso")
-        navigat("/")
+    await createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then(async (value) => {
+        const uid = value.user.uid
+        await setDoc(doc(db, 'user', uid), {
+          firstName: capitalizedfirstName,
+          lastName: capitalizedLastName,
+          niver: niver,
+          pais: pais,
+          cidade: cidade,
+          signupEmail: signupEmail,
+          signupPassword: signupPassword
+        })
+          .then(() => {
+            success("cadastro realiazdo com sucesso")
+            navigat("/")
+          })
+          .catch((erro) => {
+            error("Não foi possivel cadastrar, tente novamente!")
+            console.log(erro)
+          })
       })
-      .catch(() => {
-        error("Não foi possivel cadastrar, tente novamente!")
+      .catch((erro) => {
+        error("Email ja existente")
+        console.log(erro)
       })
   }
 

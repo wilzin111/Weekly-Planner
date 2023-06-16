@@ -78,7 +78,7 @@ body {
 
 input[type='text']:focus~label,
 input[type='password']:focus~label,
-.input_transition:not(:placeholder-shown).form__input:not(:focus)~label {
+.input_transition:not(:placeholder-shown).input_transition:not(:focus)~label {
     right: 0;
 }
 
