@@ -5,8 +5,9 @@ import { useState } from 'react'
 import { auth } from '../../FireBaseConnection'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import "./Login.css"
 import { ModalLogin } from "../../components/ModalLogin";
+import "./Login.css"
+
 
 const Login = () => {
   const navigatL = useNavigate()
@@ -22,14 +23,17 @@ const Login = () => {
       })
       .catch(() => {
         error('Usuario não encontrado')
-        setTimeout(() => { setloginModal(true) }, 4090)
+        setTimeout(() => { setloginModal(true) }, 1000)
       })
-
   }
 
   return (
     <div className="container">
-      <ModalLogin e={loginModal} />
+      <ModalLogin e={loginModal} setCloseModal= {() => setloginModal(!loginModal)}
+      navigateML={() => navigatL("/signup")}>
+        <h1>Ops, algo deu errado!</h1>
+        <p>Deseja cadastrar uma nova conta?</p>
+        </ModalLogin>
       <div className="text">
         <div className="container_texto">
           <h1>Welcome,</h1>
