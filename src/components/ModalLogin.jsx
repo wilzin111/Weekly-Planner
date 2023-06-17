@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom'
-
 const background_style = {
     position: 'fixed',
     top: '0',

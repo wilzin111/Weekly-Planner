@@ -17,9 +17,11 @@ const Login = () => {
 
   async function handleLogin() {
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-      .then(() => {
+      .then((value) => {
         success("Usuario logado com sucesso")
-        navigatL("/panel")
+        navigatL("/planer")
+        localStorage.setItem('userLogado', JSON.stringify(value.user.uid))
+        
       })
       .catch(() => {
         error('Usuario não encontrado')
