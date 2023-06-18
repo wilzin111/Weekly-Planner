@@ -19,6 +19,10 @@ export const CreateTask = () => {
     }
 
     async function registerTask() {
+        if (description === '' || weekDay === '' || hour === '') {
+            error("Preencha os campos antes de salvar")
+            return
+        }
         await addDoc(collection(db, "tasks"), {
             userUid: userUid,
             descrição: description,
@@ -27,7 +31,7 @@ export const CreateTask = () => {
         })
             .then(() => {
                 success("Tarefa salva com sucesso ")
-                setDescription('')
+                setDescription("")
                 setWeekDay('')
                 setHour('')
             })
