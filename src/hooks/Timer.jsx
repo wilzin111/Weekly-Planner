@@ -1,14 +1,29 @@
-import React from 'react'
-
 export const timer = () => {
     const date = new Date()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
+    let hour = date.getHours()
+    let minute = date.getMinutes()
     const month = date.toLocaleString('en', { month: 'long' });
     const weekDay = date.getDate()
-    const daysWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-    const dayWeek = daysWeek[date.getDay()];
     const year = date.getFullYear()
+    let dayWeek = 'th'
+
+    if(hour < 10){
+        hour = '0' + hour
+    }
+
+    if(minute < 10){
+        minute = '0' + minute
+    }
+
+    if (weekDay == 1 || weekDay == 21 || weekDay == 31) {
+        dayWeek = 'st'
+    } else if (weekDay == 2 || weekDay == 22) {
+        dayWeek = 'nd'
+    } else if (weekDay == 3 || weekDay == 23) {
+        dayWeek = 'rd'
+    }else{
+        dayWeek = 'th'
+    }
 
     const hourMinute = hour + ":" + minute
     const monthDayYear = month + ' ' + weekDay + dayWeek + ', ' + year

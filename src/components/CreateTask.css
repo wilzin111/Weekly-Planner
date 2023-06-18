@@ -1,0 +1,116 @@
+.create_task {
+    width: 100%;
+    height: 135px;
+}
+
+.conteinet_top {
+    margin-top: 35px;
+    display: flex;
+}
+
+.description {
+    width: 391px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid #FECE00;
+    border-radius: 10px;
+    margin-left: 24px;
+    margin-right: 3px;
+    padding-left: 15px;
+}
+
+.weekDay {
+    width: 240px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid #FECE00;
+    border-radius: 10px;
+    margin-right: 3px;
+    padding-left: 8px;
+}
+
+.hora {
+    width: 120px;
+    height: 45px;
+    background-color: transparent;
+    border: 1px solid #FECE00;
+    border-radius: 10px;
+    padding-left: 8px;
+}
+
+.btn_task {
+    width: 200px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.add {
+    margin-left: 692px;
+    margin-right: 24px;
+    background-color: #00BA88;
+}
+
+.delete_all {
+    background-color: #FF3D1F;
+    ;
+}
+
+.conteiner_bnt_bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.btnWeekDay {
+    width: 240px;
+    height: 33px;
+    margin-top: 23px;
+    border: none;
+    text-align: start;
+    padding-left: 7px;
+    background-color: #00BA88;
+    box-shadow: 0px 4px 24px rgba(168, 168, 168, 0.25);
+    border-radius: 9px 9px 0px 0px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 20px;
+    margin-right: 3px;
+}
+
+#Sunday {
+    background: #FF0024;
+}
+
+#Monday {
+    background: #FF8000;
+}
+
+#Tuesday {
+    background: #FFCE00;
+}
+
+#Wednesday {
+    background: rgba(255, 0, 36, 0.7);
+}
+
+#Thursday {
+    background: rgba(255, 128, 0, 0.7);
+}
+
+#Friday {
+    background: rgba(255, 206, 0, 0.7);
+}
+
+#Saturday {
+    background: rgba(255, 0, 36, 0.5);
+}

@@ -7,9 +7,7 @@ import { timer } from '../hooks/timer'
 import './HeaderPlaner.css'
 
 export function HeaderPanel() {
-
     const [time, setTime] = useState('')
-
     useEffect(() => {
         const interval = setInterval(() => {
             const dados = timer()
@@ -27,9 +25,6 @@ export function HeaderPanel() {
                 localStorage.clear()
                 navigatePL("/")
             })
-            .catch((err) => {
-                console.log(err)
-            })
     }
 
     useEffect(() => {
@@ -42,6 +37,7 @@ export function HeaderPanel() {
         }
         checkoutLog()
     })
+    
 
     return (
         <div className='header_planer'>
