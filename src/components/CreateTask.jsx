@@ -41,6 +41,7 @@ export const CreateTask = () => {
         await getDocs(task)
 
             .then((snapshot) => {
+                success("tasks deletadas")
                 const lista = []
                 snapshot.forEach((doc) => {
                     let uidTask = doc.data().userUid
@@ -50,13 +51,25 @@ export const CreateTask = () => {
                         })
                     }
                 })
-                console.log(lista)
+                for (let i = 0; i < lista.length; i++) {
+                    const element = lista[i];
+                    const taskDelete = doc(db, "tasks", element.id)
+                    deleteDoc(taskDelete)
+                }
             })
-            // lista.forEach((id)=>{
-            //    const taskDelete = doc(db,"tasks",id)    
-            //     deleteDoc(taskDelete)
-            // })
     }
+
+
+
+    const [maiorBtn, setMaiorBtn] = useState()
+
+    function addWidth() {
+        const tamanho = {
+            width: '290px'
+        }
+        setMaiorBtn(tamanho)
+    }
+
 
     return (
         <div className='create_task'>
@@ -187,15 +200,67 @@ export const CreateTask = () => {
                 <button className='delete_all btn_task' onClick={deleteAll}>- Delete All</button>
             </div>
             <div className='conteiner_bnt_bottom'>
-                <button className='btnWeekDay' id='Sunday' value="Sun">Sunday</button>
-                <button className='btnWeekDay' id='Monday' value="Mon">Monday</button>
-                <button className='btnWeekDay' id='Tuesday' value="Tue">Tuesday</button>
-                <button className='btnWeekDay' id='Wednesday' value="Wed">Wednesday</button>
-                <button className='btnWeekDay' id='Thursday' value="Thu">Thursday</button>
-                <button className='btnWeekDay' id='Friday' value="Fri">Friday</button>
-                <button className='btnWeekDay' id='Saturday' value="Sat">Saturday</button>
-            </div>
+                <button className='btnWeekDay' id='Sunday'
+                    value="Sun" onClick={addWidth}
+                    style={maiorBtn}
+                >Sunday</button>
 
+                <button className='btnWeekDay' id='Monday'
+                    value="Mon" onClick={addWidth}
+                    style={maiorBtn}
+                >Monday</button>
+
+                <button className='btnWeekDay' id='Tuesday'
+                    value="Tue" onClick={addWidth}
+                    style={maiorBtn}
+                >Tuesday</button>
+
+                <button className='btnWeekDay' id='Wednesday'
+                    value="Wed" onClick={addWidth}
+                    style={maiorBtn}
+                >Wednesday</button>
+
+                <button className='btnWeekDay' id='Thursday'
+                    value="Thu" onClick={addWidth}
+                    style={maiorBtn}
+                >Thursday</button>
+
+                <button className='btnWeekDay' id='Friday'
+                    value="Fri" onClick={addWidth}
+                    style={maiorBtn}
+                >Friday</button>
+
+                <button className='btnWeekDay' id='Saturday'
+                    value="Sat" onClick={addWidth}
+                    style={maiorBtn}
+                >Saturday</button>
+
+            </div>
+            <div className='mostrar_task'>
+                <div className='container_time'>
+                    Time
+                </div>
+                <div className="container_tasks">
+                    <div className="conteiner_time_task">
+                        10h30m
+                    </div>
+                    <div className="container_task">
+
+                        <div className='conteiner_cor'></div>
+                        <div className='container_p'>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Expedita perspiciatis aperiam, dolores
+                            </p>
+                        </div>
+                            <button>
+                               Delete
+                            </button>
+                    </div>  
+
+                </div>
+                
+            </div>
         </div>
     )
 }

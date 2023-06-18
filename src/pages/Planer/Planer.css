@@ -1,5 +1,5 @@
 .conteiner_panel {
     width: 100%;
     height: 1080px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background:bottom right url(../../assets/img_compass.png) no-repeat rgba(255, 255, 255, 0.95);
 }
