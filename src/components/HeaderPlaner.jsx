@@ -4,16 +4,19 @@ import { auth } from '../FireBaseConnection'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { timer } from '../hooks/timer'
+import { Clima } from '../hooks/Clima'
+import logo from '../assets/logoCompassPlaner.png'
 import './HeaderPlaner.css'
 
+
 export function HeaderPanel() {
-    const [time, setTime] = useState('')
+    const [time, setTime] = useState(timer)
     useEffect(() => {
         const interval = setInterval(() => {
             const dados = timer()
             setTime(dados)
 
-        }, 6000)
+        }, 60000)
         return () => clearInterval(interval)
     },[])
 
@@ -50,12 +53,11 @@ export function HeaderPanel() {
                 <div className="date">{time?.monthDayYear}</div>
             </div>
             <div className="climate">
-                <div className="local">Asunción - Paraguay</div>
-                <div className="temperature">22°</div>
+                <Clima/>
             </div>
             <div className="container_right_planer">
                 <Link className='logoCompass' to="https://compass.uol/en/home/" target="_blank">
-                    <img src="../assets/logoCompassPlaner.png" alt="" />
+                    <img src={logo} alt="" />
                 </Link>
                 <button className='btn' onClick={logout}>
                     <img src="" alt="" /><br /><br />

@@ -87,34 +87,40 @@
     margin-right: 3px;
 }
 
-#Sunday {
+#Monday {
+    
     background: #FF0024;
 }
 
-#Monday {
+#Tuesday {
     background: #FF8000;
 }
 
-#Tuesday {
+#Wednesday {
     background: #FFCE00;
 }
 
-#Wednesday {
+#Thursday {
     background: rgba(255, 0, 36, 0.7);
 }
 
-#Thursday {
+#Friday {
     background: rgba(255, 128, 0, 0.7);
 }
 
-#Friday {
-    background: rgba(255, 206, 0, 0.7);
-}
-
 #Saturday {
-    background: rgba(255, 0, 36, 0.5);
+    background: rgba(255, 206, 0, 0.7);
+    
 }
 
+#Sunday {
+    background: rgba(255, 0, 36, 0.5);
+    margin-right: 47px;
+}
+
+.tamanho {
+    width: 290px
+}
 .mostrar_task {
     margin-left: 24px;
 }

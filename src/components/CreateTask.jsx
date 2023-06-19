@@ -62,17 +62,10 @@ export const CreateTask = () => {
                 }
             })
     }
+    const [maiorBtn, setMaiorBtn] = useState('Monday')
 
 
 
-    const [maiorBtn, setMaiorBtn] = useState()
-
-    function addWidth() {
-        const tamanho = {
-            width: '290px'
-        }
-        setMaiorBtn(tamanho)
-    }
 
 
     return (
@@ -204,40 +197,41 @@ export const CreateTask = () => {
                 <button className='delete_all btn_task' onClick={deleteAll}>- Delete All</button>
             </div>
             <div className='conteiner_bnt_bottom'>
-                <button className='btnWeekDay' id='Sunday'
-                    value="Sun" onClick={addWidth}
-                    style={maiorBtn}
-                >Sunday</button>
 
-                <button className='btnWeekDay' id='Monday'
-                    value="Mon" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Monday'
+                    value="Mon" onClick={() => setMaiorBtn('Monday')}
+                    className={maiorBtn === 'Monday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Monday</button>
 
-                <button className='btnWeekDay' id='Tuesday'
-                    value="Tue" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Tuesday'
+                    value="Tue" onClick={() => setMaiorBtn('Tuesday')}
+                    className={maiorBtn === 'Tuesday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Tuesday</button>
 
-                <button className='btnWeekDay' id='Wednesday'
-                    value="Wed" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Wednesday'
+                    value="Wed" onClick={() => setMaiorBtn('Wednesday')}
+                    className={maiorBtn === 'Wednesday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Wednesday</button>
 
-                <button className='btnWeekDay' id='Thursday'
-                    value="Thu" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Thursday'
+                    value="Thu" onClick={() => setMaiorBtn('Thursday')}
+                    className={maiorBtn === 'Thursday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Thursday</button>
 
-                <button className='btnWeekDay' id='Friday'
-                    value="Fri" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Friday'
+                    value="Fri" onClick={() => setMaiorBtn('Friday')}
+                    className={maiorBtn === 'Friday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Friday</button>
 
-                <button className='btnWeekDay' id='Saturday'
-                    value="Sat" onClick={addWidth}
-                    style={maiorBtn}
+                <button id='Saturday'
+                    value="Sat" onClick={() => setMaiorBtn('Saturday')}
+                    className={maiorBtn === 'Saturday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
                 >Saturday</button>
+
+                <button id='Sunday'
+                    value="Sun" onClick={() => setMaiorBtn('Sunday')}
+                    className={maiorBtn === 'Sunday' ? 'tamanho btnWeekDay' : 'btnWeekDay'}
+                >Sunday</button>
 
             </div>
             <div className='mostrar_task'>
@@ -253,17 +247,17 @@ export const CreateTask = () => {
                         <div className='conteiner_cor'></div>
                         <div className='container_p'>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                 Expedita perspiciatis aperiam, dolores
                             </p>
                         </div>
-                            <button>
-                               Delete
-                            </button>
-                    </div>  
+                        <button>
+                            Delete
+                        </button>
+                    </div>
 
                 </div>
-                
+
             </div>
         </div>
     )

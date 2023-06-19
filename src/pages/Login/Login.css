@@ -82,6 +82,21 @@ input[type='password']:focus~label,
     right: 0;
 }
 
+.password_error {
+    border: 1px solid #E9B425;
+}
+
+.textErro {
+    width: 283px;
+    height: 40px;
+    margin-left: 46px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #E9B425;
+}
+
 .container_login button {
     width: 379px;
     height: 67px;
@@ -102,5 +117,5 @@ input[type='password']:focus~label,
     margin-top: 36px;
     margin-left: 534px;
     background: center url(../../assets/logo_compass.png) repeat no-repeat;
-    
+
 }

@@ -14,6 +14,8 @@ const Login = () => {
   const [loginModal, setloginModal] = useState(false)
   const [loginEmail, setloginEmail] = useState('')
   const [loginPassword, setloginPassword] = useState('')
+  const [passwordE, setPasswordE] = useState('')
+  const [borderE, setBorderE] = useState('')
 
   async function handleLogin() {
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -21,21 +23,38 @@ const Login = () => {
         success("Usuario logado com sucesso")
         navigatL("/planer")
         localStorage.setItem('userLogado', JSON.stringify(value.user.uid))
-        
       })
-      .catch(() => {
-        error('Usuario não encontrado')
-        setTimeout(() => { setloginModal(true) }, 1000)
+
+      .catch((err) => {
+        const errorCode = err.code;
+        if (errorCode === 'auth/invalid-email') {
+          error('Usuario não encontrado')
+          setTimeout(() => { setloginModal(true) }, 1000)
+
+        } else if (errorCode === 'auth/missing-password') {
+          error('Senha incorreta')
+          setBorderE('error')
+          setPasswordE(
+            <>
+              <div className="textErro">
+                <p>Wow, invalid username or password.
+                  Please, try again!</p>
+              </div>
+            </>
+          )
+        }
+
       })
   }
 
+  
   return (
     <div className="container">
-      <ModalLogin e={loginModal} setCloseModal= {() => setloginModal(!loginModal)}
-      navigateML={() => navigatL("/signup")}>
+      <ModalLogin e={loginModal} setCloseModal={() => setloginModal(!loginModal)}
+        navigateML={() => navigatL("/signup")}>
         <h1>Ops, algo deu errado!</h1>
         <p>Deseja cadastrar uma nova conta?</p>
-        </ModalLogin>
+      </ModalLogin>
       <div className="text">
         <div className="container_texto">
           <h1>Welcome,</h1>
@@ -50,7 +69,7 @@ const Login = () => {
               <input type="text"
                 placeholder="email"
                 id="user_id"
-                className="input_transition"
+                className={borderE === 'error' ? 'password_error input_transition' : 'input_transition'}
                 onChange={(e) => setloginEmail(e.target.value)}
               />
 
@@ -61,7 +80,7 @@ const Login = () => {
               <input type="password"
                 placeholder="password"
                 id="user_id_password"
-                className="input_transition"
+                className={borderE === 'error' ? 'password_error input_transition' : 'input_transition'}
                 onChange={(e) => setloginPassword(e.target.value)}
               />
 
@@ -69,6 +88,10 @@ const Login = () => {
             </div>
 
           </form>
+
+          <div>
+            {passwordE}
+          </div>
 
           <button onClick={handleLogin}>Log in</button>
 
