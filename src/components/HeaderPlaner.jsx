@@ -16,7 +16,7 @@ export function HeaderPanel() {
             const dados = timer()
             setTime(dados)
 
-        }, 60000)
+        }, 7000)    
         return () => clearInterval(interval)
     },[])
 

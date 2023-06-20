@@ -20,19 +20,19 @@ const Login = () => {
   async function handleLogin() {
     await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
       .then((value) => {
-        success("Usuario logado com sucesso")
+        success("User logged in successfully")
         navigatL("/planer")
         localStorage.setItem('userLogado', JSON.stringify(value.user.uid))
       })
 
       .catch((err) => {
         const errorCode = err.code;
-        if (errorCode === 'auth/invalid-email') {
-          error('Usuario não encontrado')
+        if (errorCode ===  'auth/user-not-found') {
+          error('User not found')
           setTimeout(() => { setloginModal(true) }, 1000)
 
-        } else if (errorCode === 'auth/missing-password') {
-          error('Senha incorreta')
+        } else if (errorCode === 'auth/missing-password' || 'auth/wrong-password') {
+          error('Incorrect password')
           setBorderE('error')
           setPasswordE(
             <>
@@ -52,8 +52,8 @@ const Login = () => {
     <div className="container">
       <ModalLogin e={loginModal} setCloseModal={() => setloginModal(!loginModal)}
         navigateML={() => navigatL("/signup")}>
-        <h1>Ops, algo deu errado!</h1>
-        <p>Deseja cadastrar uma nova conta?</p>
+        <h1>Oops, something went wrong!</h1>
+        <p>Do you want to register a new account?</p>
       </ModalLogin>
       <div className="text">
         <div className="container_texto">

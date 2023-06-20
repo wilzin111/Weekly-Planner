@@ -88,7 +88,7 @@
 }
 
 #Monday {
-    
+
     background: #FF0024;
 }
 
@@ -110,7 +110,7 @@
 
 #Saturday {
     background: rgba(255, 206, 0, 0.7);
-    
+
 }
 
 #Sunday {
@@ -121,9 +121,11 @@
 .tamanho {
     width: 290px
 }
+
 .mostrar_task {
     margin-left: 24px;
 }
+
 
 .container_time {
     width: 85px;
@@ -142,12 +144,13 @@
 
 .container_tasks {
     display: flex;
+    margin-bottom: 7px;
 }
 
 .conteiner_time_task {
     width: 85px;
     height: 85px;
-    background: #FF8000;
+    background: #FF0024;
     font-weight: 400;
     font-size: 17px;
     line-height: 20px;
@@ -155,6 +158,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
 }
 
 .container_task {
@@ -169,7 +173,7 @@
 
 .conteiner_cor {
     width: 14px;
-    background-color: #FF8000;
+    background-color: #FF0024;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     margin-right: 13px;
@@ -196,7 +200,8 @@
     line-height: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;background: #FF3D1F;
+    align-items: center;
+    background: #FF3D1F;
     border-radius: 4px;
     margin-top: 6px;
     margin-right: 7px;

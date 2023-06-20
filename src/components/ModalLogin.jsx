@@ -31,7 +31,7 @@ const buttomModalL = {
     boxShadow: 'inset 5px 5px 15px rgba(0, 0, 0, 0.15)',
     color: '#fff',
     fontWeight: '700',
-    fontSize: '19px',
+    fontSize: '17px',
     lineHeight: '40px',
     border: 'none',
     borderRadius: '50px'
@@ -58,8 +58,8 @@ export function ModalLogin({ e, children, setCloseModal,navigateML }) {
             <div>
                 <div style={background_style}>
                     <div style={modal_background}>{children}
-                        <button style={buttomModalL} onClick={setCloseModal}>Já tenho conta!</button>
-                        <button style={buttom2ModalL} onClick={navigateML} >Registre uma nova conta</button>
+                        <button style={buttomModalL} onClick={setCloseModal}>I already have an account!</button>
+                        <button style={buttom2ModalL} onClick={navigateML} >Register a new account</button>
                     </div>
 
                 </div>

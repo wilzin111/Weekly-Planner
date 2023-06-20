@@ -19,7 +19,6 @@ export const Clima = () => {
     }
     buscarDadosLocal()
 
-
     //    const key = 'd59fd5695fc127ff63e08781a482015f'
     //     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cdd},${pais}&units=metric&appid=${key}&lang=pt_br;`
     //     const searchLocation = async () => {

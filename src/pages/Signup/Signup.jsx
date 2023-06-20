@@ -48,7 +48,7 @@ const Signup = () => {
       signupEmail === '' ||
       signupPassword === '' ||
       signupPasswordConfirm === '') {
-      warn("preencha todos os campos")
+      warn("Fill in all fields")
       return
     }
 
@@ -60,7 +60,7 @@ const Signup = () => {
 
     //verifica idade
     if (age < 18) {
-      error("idade deve ser maior de 18!")
+      error("Age must be over 18!")
       return
     }
 
@@ -68,18 +68,18 @@ const Signup = () => {
 
     // Verifica se o e-mail está correto
     if (!Email.test(signupEmail)) {
-      error("E-mail incorreto")
+      error("Incorrect email")
       return
     }
 
     const senha = /^(?=.*[\W_])(?=.*[A-Z])(?=.*\d).{6,}$/
     if (!senha.test(signupPassword)) {
-      error("a senha deve conter pelo menos um caracter especial, uma letra maiuscula e um numero")
+      error("Password must contain at least one special character, one uppercase letter and one number")
       return
     }
 
     if (signupPassword != signupPasswordConfirm) {
-      error("senha deve ser iguais")
+      error("Passwords must be the same")
       return
     }
 
@@ -96,16 +96,16 @@ const Signup = () => {
           signupPassword: signupPassword
         })
           .then(() => {
-            success("cadastro realiazdo com sucesso")
+            success("Registration done successfully")
             navigat("/")
           })
           .catch((erro) => {
-            error("Não foi possivel cadastrar, tente novamente!")
+            error("Unable to register, please try again!")
             console.log(erro)
           })
       })
       .catch((erro) => {
-        error("Email ja existente")
+        error("Already existing email")
         console.log(erro)
       })
   }

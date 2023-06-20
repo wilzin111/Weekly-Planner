@@ -30,13 +30,13 @@ export const CreateTask = () => {
             hora: hour
         })
             .then(() => {
-                success("Tarefa salva com sucesso ")
+                success("Task successfully saved")
                 setDescription("")
                 setWeekDay('')
                 setHour('')
             })
             .catch(() => {
-                error("Falha ao salvar a tarefa tente novamente")
+                error("Failed to save task please try again")
             })
     }
 
@@ -45,7 +45,7 @@ export const CreateTask = () => {
         await getDocs(task)
 
             .then((snapshot) => {
-                success("tasks deletadas")
+                success("Deleted tasks")
                 const lista = []
                 snapshot.forEach((doc) => {
                     let uidTask = doc.data().userUid
@@ -62,11 +62,42 @@ export const CreateTask = () => {
                 }
             })
     }
+
+    async function getTasksFireBase() {
+        const task = collection(db, "tasks")
+        await getDocs(task)
+
+            .then((snapshot) => {
+                const lista = []
+                snapshot.forEach((doc) => {
+                    let uidTask = doc.data().userUid
+                    let taskHor = doc.data().hora
+                    let taskDescription = doc.data().descrição
+                    let taskDay = doc.data().diaSemana
+
+                    if (uidTask == userUid) {
+                        lista.push({
+                            id: doc.id,
+                            hora: taskHor,
+                            descrição: taskDescription,
+                            dia: taskDay
+                        })
+                    }
+                })
+                const tasksOrdenadas = Object.values(lista);
+                tasksOrdenadas.sort((objetoA, objetoB) => {
+                    const horaA = new Date(`2000/01/01 ${objetoA.hora}`);
+                    const horaB = new Date(`2000/01/01 ${objetoB.hora}`);
+                    return horaA - horaB;
+                });
+                localStorage.setItem("ListTasks", JSON.stringify(tasksOrdenadas))
+            })
+    }
+    getTasksFireBase()
+
+    const getDescricaoLS = JSON.parse(localStorage.getItem("ListTasks"))
+
     const [maiorBtn, setMaiorBtn] = useState('Monday')
-
-
-
-
 
     return (
         <div className='create_task'>
@@ -82,13 +113,13 @@ export const CreateTask = () => {
                     value={weekDay}
                     onChange={handleChangeWeekDay}
                 >
-                    <option value="Sun">Sunday</option>
-                    <option value="Mon">Monday</option>
-                    <option value="Tue">Tuesday</option>
-                    <option value="Wed">Wednesday</option>
-                    <option value="Thu">Thursday</option>
-                    <option value="Fri">Friday</option>
-                    <option value="Sat">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
                 </select>
                 <select className='hora'
                     name="hora"
@@ -238,26 +269,29 @@ export const CreateTask = () => {
                 <div className='container_time'>
                     Time
                 </div>
-                <div className="container_tasks">
-                    <div className="conteiner_time_task">
-                        10h30m
-                    </div>
-                    <div className="container_task">
+                {getDescricaoLS.map((obj) => {
 
-                        <div className='conteiner_cor'></div>
-                        <div className='container_p'>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Expedita perspiciatis aperiam, dolores
-                            </p>
+                    return (
+                        <div className="container_tasks" key={obj.id}>
+
+                            <div className="conteiner_time_task">
+                                {obj.hora}
+                            </div>
+                            <div className="container_task">
+
+                                <div className='conteiner_cor'></div>
+                                <div className='container_p'>
+                                    <p>
+                                        {obj.descrição}
+                                    </p>
+                                </div>
+                                <button>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
-                        <button>
-                            Delete
-                        </button>
-                    </div>
-
-                </div>
-
+                    )
+                })}
             </div>
         </div>
     )
