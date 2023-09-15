@@ -21,4 +21,6 @@ Organize sua semana de forma eficaz com o Weekly Planner. Nunca foi tão fácil 
 ## Banco de dados
 -Firebase
 
-# ⚠️ Projeto ainda em desenolvimento NÃO DISPONIVEL PARA DOWNLOAD
+# ⚠️ Projeto ainda em desenolvimento 
+
+    NÃO DISPONIVEL PARA DOWNLOAD
