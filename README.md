@@ -1,13 +1,24 @@
 # Weekly-Planner
-Terceiro projeto para pb na empresa compass.oul 
-Ideia do projero é fazer um planner onde sómente quem esta registrado tem acesso, 
-as tasks que forem mostradas são penas do usuario logado.
+![image](https://github.com/wilzin111/Weekly-Planner/assets/129423295/50f4c87c-3262-43e0-8c8d-2c73c63e09e5)
 
-No header da tela tem que mostrar o nome do projeto o horario atual,
-o clima local (fornecido no registro do usuario),
-o botão de logout e um link direcionando para a pagina da compass.
+# 📓 Sobre: 
+O Weekly Planner é uma ferramenta de planejamento poderosa e intuitiva que ajuda você a organizar sua vida de forma eficiente, garantindo que você esteja no controle de suas tarefas e metas ao longo da semana. Seja para uso pessoal, acadêmico ou profissional, o Weekly Planner oferece uma maneira prática de visualizar suas atividades semanais.
 
-No resto da tela serão mostradas as tanks do dia atual da semana onde se haver uma task 
-na mesma hora de outra deve haver uma linha resaltando essa informação.
+O Weekly Planner fornece uma visão completa da sua semana de uma só vez. Com uma interface de calendário intuitiva, você pode ver todos os dias da semana de forma clara e organizada.
+Registre todas as suas tarefas, compromissos e metas para a semana. Atribua datas de vencimento e prioridades para garantir que você esteja focado no que é mais importante.
 
-Alem de que cada task deve portar um botão que ira deletar a task.
+Organize sua semana de forma eficaz com o Weekly Planner. Nunca foi tão fácil manter o controle das suas tarefas e compromissos. Experimente agora e simplifique sua vida semanal!
+
+# 👨🏻‍💻 Dev: 
+- [Willian Tolfo](https://github.com/wilzin111)
+
+# 🛠️ Ferramentas utilizadas:
+
+## Front end
+- React
+- Css
+
+## Banco de dados
+-Firebase
+
+# ⚠️ Projeto ainda em desenolvimento NÃO DISPONIVEL PARA DOWNLOAD
